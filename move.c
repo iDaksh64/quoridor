@@ -1,16 +1,13 @@
 #include <stdio.h>
+#include <string.h>
 #include "game.h"
 
 int move(int p, int row, int column) {
-    int flag = 0;
     if (row < 0 || row > 8 || column < 0 || column > 8) {
-        flag = 1;
-    }
-    
-    if (flag == 1) {
-        printf("Invalid Input\n");
+        printf("Invalid : out of range\n");
         return 0;
     }
+    
 
     int taken = 0;
     if (p == 0 && b_row == row && b_col == column) {
@@ -34,6 +31,6 @@ int move(int p, int row, int column) {
         b_row = row;
         b_col = column;
     }
-    correct = 1;
-    return correct;
+
+    return 1;;
 }
