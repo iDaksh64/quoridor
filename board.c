@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "game.h"
 
-void print_board() {
+void print_board(void) {
     int i, j;
 
     printf("\n     a   b   c   d   e   f   g   h   i\n");
@@ -18,10 +18,8 @@ void print_board() {
                 printf(" . ");
 
             if (j < 8) {
-                if (wall_vertical[i][j])
-                    printf("|");
-                else
-                    printf(" ");
+                if (wall_vertical[i][j] || (i > 0 && wall_vertical[i-1][j])) printf("|");
+                else printf(" ");
             }
         }
 
@@ -31,17 +29,16 @@ void print_board() {
             printf("    ");
 
             for (j = 0; j < 9; j++) {
-                if (wall_horizontal[i][j])
-                    printf("---");
-                else
-                    printf("   ");
-                if (j < 8)
-                    printf(" ");
-            }
+                if (wall_horizontal[i][j] || (j > 0 && wall_horizontal[i][j-1])) printf("---");
+                else printf("   ");
 
+                if (j < 8) {
+                    if (wall_horizontal[i][j]) printf("-");
+                    else printf(" ");
+                }
+            }
             printf("\n");
         }
     }
-
     printf("\n");
 }
